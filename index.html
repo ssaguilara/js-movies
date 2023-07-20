@@ -37,22 +37,22 @@
 
                  <ul class="menu__list">
                    <li>
-                     <a href="#">Inicio</a>
+                     <a href="#">Home</a>
                    </li>
                    <li>
-                     <a href="#movies">Tendencias</a>
+                     <a href="#trending">Trending</a>
                    </li>
                    <li>
-                     <a href="#Upcoming">Proximamente</a>
+                     <a href="#upcoming">Upcoming</a>
                    </li>
                    <li>
                      <a
-                       href="#categories">Categorias</a>
+                       href="#categories">Categories</a>
                    </li>
                  </ul>
                 
                  <div class="menu__search">
-                   <input class="search-movie" type="text" placeholder="Buscar" />
+                   <input class="search-movie" type="text" placeholder="Search" />
                    <button class="btn-search" type="submit">
                      <i class="uil uil-search"></i>
                    </button>
@@ -70,16 +70,51 @@
 
 
     <main>
-      <section></section>
-      <section></section>
-      <section></section>
+      <section id="trending" class="trending container">
+        <div class="trending__container">
+            <h2 class="title">Trending</h2>
+            <div class="movies__container">
+                <!-- <div class="movie__card">
+                    <img class="movie__card-image" src="" alt=""/>                        
+                    <p>Title</p>                                     
+                </div> -->
+      
+            </div>   
+        </div>
+      </section>
+
+      <section id="upcoming" class="upcoming container">
+        <div class="upcoming__container">
+            <h2 class="title">Upcoming</h2>
+            <div class="movies__container">
+                <!-- <div class="movie__card">
+                    <img class="movie__card-image" src="" alt=""/>                        
+                    <p>Title</p>                                     
+                </div> -->
+            </div>   
+        </div>
+      </section>
+
+      <section id="categories" class="categories container">
+        <div class="categories__container">
+            <h2 class="title">Categories</h2>
+            <div class="categories__list"></div>
+            <div class="movies__container">
+                <!-- <div class="movie__card">
+                    <img class="movie__card-image" src="" alt=""/>                        
+                    <p>Title</p>                                     
+                </div> -->
+            </div>   
+        </div>
+      </section>
+
     </main>
 
-
-    <!-- <footer>
+    <footer>
       <p>&#169; Sergio Aguilar. All right reserved</p>
-    </footer> -->
+    </footer>
 
     <script src="main.js"></script>
+    <script src="api-fetch.js"></script>
   </body>
 </html>
