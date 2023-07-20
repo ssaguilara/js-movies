@@ -107,9 +107,51 @@ movies.forEach(movie => {
 
 }
 
+
+
+// --url 'https://api.themoviedb.org/3/search/movie?query=vengadores'
   
 
+const searchMovie = document.querySelector('.search-movie');
+const btnSearch = document.querySelector('.btn-search');
+const searchContainer = document.querySelector('.search__container')
+const btnSearchClose = document.querySelector('.btn-search-close i');
 
+btnSearchClose.addEventListener('click', ()=> searchContainer.classList.add('inactive'))
+
+btnSearch.addEventListener('click', ()=> getMoviesBySearch(searchMovie.value))
+searchMovie.addEventListener('keyup', (e) =>{
+    if (e.keyCode === 13) { 
+        getMoviesBySearch(searchMovie.value);
+    }
+  });
+
+btnSearch.addEventListener('click', ()=> getMoviesBySearch(searchMovie.value))
+
+
+
+async function getMoviesBySearch(query) {
+    const res = await fetch(`${api_base}/search/movie${api_key_parameter}&query=${query}`);
+    // const res = await fetch('https://api.themoviedb.org/3/search/movie?api_key=' + api_key + 'query=' + query;
+    const data = await res.json();
+  
+    const movies = data.results;
+
+    const moviesContainer = document.querySelector('.search__container .movies__container')
+
+
+    if(movies.length == 0)
+        searchContainer.classList.add('inactive');
+    else{
+        searchContainer.classList.remove('inactive');
+        searchMovie.focus();
+        searchMovie.value = ''
+        moviesContainer.innerHTML = ' '
+        createMoviesCards(movies, moviesContainer);
+    }
+
+    
+  }
 
   
 

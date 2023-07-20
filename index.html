@@ -32,7 +32,7 @@
             <div class="menu__container">
 
 
-                <div class="btn-close"><i class="uil uil-times"></i></div>
+                <div class="btn-menu-close"><i class="uil uil-times"></i></div>
 
 
                  <ul class="menu__list">
@@ -53,7 +53,7 @@
                 
                  <div class="menu__search">
                    <input class="search-movie" type="text" placeholder="Search" />
-                   <button class="btn-search" type="submit">
+                   <button class="btn-search">
                      <i class="uil uil-search"></i>
                    </button>
                  </div>
@@ -70,6 +70,23 @@
 
 
     <main>
+
+      <section id="search" class="search container">
+        <div class="search__container inactive">
+            <div>
+              <h2 class="title">Search Result</h2>
+              <div class="btn-search-close"><i class="uil uil-times"></i></div>
+            </div>
+            <div class="movies__container">
+                <!-- <div class="movie__card">
+                    <img class="movie__card-image" src="" alt=""/>                        
+                    <p>Title</p>                                     
+                </div> -->
+            </div>   
+        </div>
+      </section>
+
+
       <section id="trending" class="trending container">
         <div class="trending__container">
             <h2 class="title">Trending</h2>
@@ -78,7 +95,6 @@
                     <img class="movie__card-image" src="" alt=""/>                        
                     <p>Title</p>                                     
                 </div> -->
-      
             </div>   
         </div>
       </section>
