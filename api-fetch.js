@@ -19,7 +19,6 @@ async function getTrendingMovies() {
 getTrendingMovies();
 
 
-
 async function getUpcomingMovies() {
     const res = await fetch(`${api_base}/movie/upcoming${api_key_parameter}`);
     // const res = await fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=' + api_key);
@@ -71,7 +70,7 @@ function selectCategory(btnCategory, categoryId){
 }
 
 async function getMoviesByCategory(id=28){
-    // const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=' + api_key + 'with_genres=' + id);
+    // const res = await fetch('https://api.themoviedb.org/3/discover/movie/list?api_key=' + api_key + 'with_genres=' + id);
     const res = await fetch(`${api_base}/discover/movie${api_key_parameter}&with_genres=${id}`);
     const data = await res.json(); 
 
@@ -80,6 +79,7 @@ async function getMoviesByCategory(id=28){
     
     moviesContainer.scrollLeft  = 0;
     moviesContainer.innerHTML = ' ';
+    // moviesContainer.scrollIntoView({ behavior: 'smooth' })
     createMoviesCards(movies, moviesContainer);
 }
 
@@ -88,28 +88,93 @@ getMoviesByCategory();
 
 function createMoviesCards(movies, moviesContainer) {
 movies.forEach(movie => {
+
     const movieCard = document.createElement('div');
     movieCard.classList.add('movie__card');
+    movieCard.setAttribute('data-id',movie.id);
 
     const movieImg = document.createElement('img');
     movieImg.classList.add('movie__card-image');
     movieImg.setAttribute('alt', movie.title);
     movieImg.setAttribute('src','https://image.tmdb.org/t/p/w300' + movie.poster_path);
 
+
+    const btnLike = document.createElement("button");
+    btnLike.classList.add("btn-like");
+
+    if(likedMoviesListLocalStorage()[movie.id])
+      btnLike.classList.add('btn-like--liked')
+
+    btnLike.addEventListener("click", () => {
+        btnLike.classList.toggle("btn-like--liked")
+        likedMovieListUpdate(movie);
+        getLikedMovies();
+       
+    })
+
     const movieTitle = document.createElement('p');
     movieTitle.textContent = movie.title;
 
     movieCard.appendChild(movieImg);
+    movieCard.appendChild(btnLike);
     movieCard.appendChild(movieTitle);
 
     moviesContainer.appendChild(movieCard);
     });
-
 }
 
 
+function likedMoviesListLocalStorage() {
 
-// --url 'https://api.themoviedb.org/3/search/movie?query=vengadores'
+    const moviesLocalStorage = JSON.parse(localStorage.getItem('liked_movies'));
+    let movies;
+  
+    if (moviesLocalStorage) {
+      movies = moviesLocalStorage;
+    } else {
+      movies = {};
+    }
+    return movies;
+  }
+
+function likedMovieListUpdate(movie) { 
+    
+    const btnslike = document.querySelectorAll(`[data-id="${movie.id}"] .btn-like` )
+    
+  
+    const likedMovies = likedMoviesListLocalStorage();
+
+    if (likedMovies[movie.id]) {
+      likedMovies[movie.id] = undefined;
+      btnslike.forEach(btnlike => btnlike.classList.remove('btn-like--liked'));
+    } else {
+      likedMovies[movie.id] = movie;
+      btnslike.forEach(btnlike => btnlike.classList.add('btn-like--liked')); 
+    }
+    
+    localStorage.setItem('liked_movies', JSON.stringify(likedMovies));
+ }
+
+
+function getLikedMovies() {
+
+    const likeContainer = document.querySelector('.like__container')
+    const moviesContainer = document.querySelector('.like__container .movies__container')
+
+    const likedMovies = likedMoviesListLocalStorage();
+    const movies = Object.values(likedMovies);
+
+    if(movies.length == 0)
+        likeContainer.classList.add('inactive');
+    else
+        likeContainer.classList.remove('inactive');
+  
+    moviesContainer.innerHTML = ' ';
+    createMoviesCards(movies, moviesContainer);
+
+}
+  
+getLikedMovies()
   
 
 const searchMovie = document.querySelector('.search-movie');
@@ -136,7 +201,6 @@ async function getMoviesBySearch(query) {
     const data = await res.json();
   
     const movies = data.results;
-
     const moviesContainer = document.querySelector('.search__container .movies__container')
 
 
@@ -144,14 +208,14 @@ async function getMoviesBySearch(query) {
         searchContainer.classList.add('inactive');
     else{
         searchContainer.classList.remove('inactive');
+        searchContainer.scrollIntoView({ behavior: 'smooth' })
         searchMovie.focus();
         searchMovie.value = ''
         moviesContainer.innerHTML = ' '
         createMoviesCards(movies, moviesContainer);
     }
-
-    
+ 
   }
 
-  
+
 

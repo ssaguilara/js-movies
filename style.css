@@ -36,14 +36,19 @@ body{
 /* header */
 
 .header{
-    height: 5rem;
+ position: fixed;
+ top: 0;
+ right: 0;
+ left: 0;
+ background-color: var(--black);
+ z-index: 100;
+
 }
 
 .menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 3rem;
 }
 
 .menu__logo {
@@ -141,12 +146,11 @@ body{
 /* main */
 
 .title {
-    margin: 1rem 0;
+    padding-top: 5rem;
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--white);
 }
-
 
 .movies__container{
     display: flex;
@@ -171,7 +175,8 @@ body{
 
 .movie__card{
     cursor: pointer;
-    width: 20rem;
+    width: 18rem;
+    position: relative;
 }
 
 .movie__card .movie__card-image{
@@ -188,11 +193,11 @@ body{
 }
 
 .categories__list{
+    margin-top: 2rem;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
-
 }
 
 .btn-category{
@@ -217,11 +222,17 @@ body{
 
 .search__container > div:nth-child(1) {
     display: flex;
+    margin-top: 5rem;
+}
+
+.search__container .title{
+    padding-top: 1rem;
 }
 
 .btn-search-close{
     font-size: 2rem;
     padding-left: 1rem;
+    text-align: center;
 }
 
 .btn-search-close i::before{
@@ -234,7 +245,30 @@ body{
     border-radius: 50%;
 }
 
+.btn-like{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    border: 0.1 solid var(--white);
+    padding: 0;
+    margin: 0;
+    background-color: var(--black);
+    cursor: pointer;
+}
 
+.btn-like::before {
+    content: '🤍';
+  }
+.btn-like--liked {
+    background-color: var(--white);
+    box-shadow: 0px 0px 10px 2px red;
+}
+.btn-like--liked::before {
+    content: '❤️';
+}
 
 /* footer */
 
@@ -313,15 +347,14 @@ footer{
     color: var(--black);  
 }
 
+.search-movie{
+    color: var(--black);
+}
+
 .btn-search{
     color: var(--black); 
 }
 
 
-
 }
 
-
-/* @media screen (max-width: 470px) {
-
-} */
