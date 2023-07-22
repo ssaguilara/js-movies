@@ -21,50 +21,57 @@
 
   <body>
     <header>
-      <div class="header container">
+      <div class="header ">
 
-            <nav class="menu">
-        
-            <figure class="menu__logo">
-                <img src="img/full-logo.svg" width="120" alt="" />
-            </figure> 
-
-            <div class="menu__container">
-
-
-                <div class="btn-menu-close"><i class="uil uil-times"></i></div>
-
-
-                 <ul class="menu__list">
-                   <li>
-                     <a href="#">Home</a>
-                   </li>
-                   <li>
-                     <a href="#trending">Trending</a>
-                   </li>
-                   <li>
-                     <a href="#upcoming">Upcoming</a>
-                   </li>
-                   <li>
-                     <a
-                       href="#categories">Categories</a>
-                   </li>
-                 </ul>
-                
-                 <div class="menu__search">
-                   <input class="search-movie" type="text" placeholder="Search" />
-                   <button class="btn-search">
-                     <i class="uil uil-search"></i>
-                   </button>
-                 </div>
-
-            </div>
+          <nav class="menu container">
 
             <div class="btn-menu">
-                <i class="uil uil-align-right"></i>
+                <i class="uil uil-align-left"></i>
             </div>
 
-            </nav>
+            <div class="menu__logo">
+                <img src="img/logo-black.svg" width="120" alt="" />
+            </div> 
+
+              <div>
+                <div class="menu__container">
+                
+                    <div class="btn-menu-close"><i class="uil uil-times"></i></div>
+                
+                     <ul class="menu__list">
+                       <li>
+                         <a href="#">Home</a>
+                       </li>
+                       <li>
+                         <a href="#trending">Trending</a>
+                       </li>
+                       <li>
+                         <a href="#upcoming">Upcoming</a>
+                       </li>
+                       <li>
+                         <a
+                           href="#categories">Categories</a>
+                       </li>
+                     </ul>
+                    
+                     <div class="menu__search">
+                       <input class="search-movie" type="text" placeholder="Search" />
+                       <button class="btn-search">
+                         <i class="uil uil-search"></i>
+                       </button>
+                     </div>
+                
+                </div>
+
+                <div class="btn__theme">
+                  <button class="btn__theme-day"><i class="uil uil-sun"></i> </button>
+                  <button class="btn__theme-night"><i class="uil uil-moon"></i> </button>
+                  <div class="btn-theme--change"></div>
+                </div>
+
+              </div>
+    
+          </nav>
       </div>
     </header>
 
@@ -135,13 +142,18 @@
         </div>
       </section>
 
+      <!-- <div class="btn__theme">
+        <i class="uil uil-moon change-theme"></i> 
+      </div> -->
+
     </main>
 
     <footer>
       <p>&#169; Sergio Aguilar. All right reserved</p>
     </footer>
 
-    <script src="menu-responsive.js"></script>
     <script src="api-fetch.js"></script>
+    <script src="btn-menu.js"></script>
+    <script src="btn-theme.js"></script>
   </body>
 </html>
